@@ -214,39 +214,41 @@
 
 
 <div>
-	<h2>Showing all products of Category {{categoryName}}:</h2><br>
 
-
-
-
-	{% for itemData in data %}
-	<table>
-		
-		<tr id="productImage">
+	<section  class="container">
+		<h4 class="title">
+			<span class="pull-left"><span class="text"><span class="line">Showing all products of Category <strong>{{categoryName}}</strong></span></span></span>
+			
+		</h4>
+		<ul class="thumbnails">
+			{% for itemData in data %}
 			{% for row in itemData %}
-			<td>
-				<a href="/productDescription?productId={{row[0]}}">
-					<img src={{ url_for('static', filename='uploads/' + row[3]) }} id="itemImage" />
-				</a>
-			</td>
+			<li class="span3">
+				<div class="product-box">
+					<p>
+						
+						
+						<a href="/productDescription?productId={{row[0]}}"><img src="{{ url_for('static', filename='uploads/' + row[3]) }}" alt="" /></a></p>
+						
+						
+						<a href="/productDescription?productId={{row[0]}}" class="title">
+						
+							{{row[1]}}
+						
+					</a>
+
+					<p class="price">${{row[2]}}</p>
+				
+
+				</div>
+			</li>
 			{% endfor %}
-		</tr>
-		<tr id="productName">
-			{% for row in itemData %}
-			<td>
-				{{row[1]}}
-			</td>
-			{% endfor %}
-		</tr>
-		<tr id="productPrice">
-			{% for row in itemData %}
-			<td>
-				${{row[2]}}
-			</td>
-			{% endfor %}
-		</tr>
-	</table>
-	{% endfor %}
+			{% endfor %}																																	
+		</ul>
+	</section>
+
+
+	
 
 
 
@@ -258,11 +260,11 @@
 		<div class="span3">
 			<h4>Navigation</h4>
 			<ul class="nav">
-				<li><a href="./index.html">Homepage</a></li>  
+				 <li><a href="/">Homepage</a></li>  
 				<li><a href="./about.html">About Us</a></li>
-				<li><a href="./contact.html">Contac Us</a></li>
-				<li><a href="./cart.html">Your Cart</a></li>
-				<li><a href="./register.html">Login</a></li>							
+				<li><a href="/contact">Contac Us</a></li>
+				<li><a href="/cart">Your Cart</a></li>
+				<li><a href="/loginForm">Login</a></li>							
 			</ul>					
 		</div>
 		<div class="span4">
@@ -276,7 +278,7 @@
 		</div>
 		<div class="span5">
 			<a href="/" class="logo pull-left"><img style = "height: 40px;width: 200px;" src= {{ url_for('static', filename='images/logo.png') }} class="site_logo" alt=""></a>
-			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+			 
 			<br/>
 			<span class="social_icons">
 				<a class="facebook" href="#">Facebook</a>

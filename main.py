@@ -204,6 +204,12 @@ def loginForm():
     else:
         return render_template('login.html', error='')
     
+@app.route("/contact")
+def contact():
+    loggedIn, firstName, noOfItems = getLoginDetails()
+    return render_template("contact.html", loggedIn=loggedIn, firstName=firstName, noOfItems=noOfItems)
+    #return render_template('thanks.html', error='')
+
 
 
 @app.route("/checkout")

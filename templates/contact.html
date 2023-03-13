@@ -29,7 +29,39 @@
 	<![endif]-->
 
 	<style>
-		
+        /* Style inputs with type="text", select elements and textareas */
+        input[type=text], select, textarea {
+          width: 100%; /* Full width */
+          padding: 12px; /* Some padding */ 
+          border: 1px solid #ccc; /* Gray border */
+          border-radius: 4px; /* Rounded borders */
+          box-sizing: border-box; /* Make sure that padding and width stays in place */
+          margin-top: 6px; /* Add a top margin */
+          margin-bottom: 16px; /* Bottom margin */
+          resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+        }
+        
+        /* Style the submit button with a specific background color etc */
+        input[type=submit] {
+          background-color: #04AA6D;
+          color: white;
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        /* When moving the mouse over the submit button, add a darker green color */
+        input[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        /* Add a background color and some padding around the form */
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        } 
 
 		/* Slideshow container */
 		.slideshow-container {
@@ -204,37 +236,35 @@
 			</div>			
 		</section>
 
-        <section  class="container">
-            <h4 class="title">
-                <span class="pull-left"><span class="text"><span class="line">Our <strong>Products</strong></span></span></span>
-                
-            </h4>
-            <ul class="thumbnails">
-                {% for data in itemData %}
-                {% for row in data %}
-                <li class="span3">
-                    <div class="product-box">
-                        <p>
-                            
-                            
-                            <a href="/productDescription?productId={{row[0]}}"><img src="{{ url_for('static', filename='uploads/' + row[4]) }}" alt="" /></a></p>
-                            
-                            
-                            <a href="/productDescription?productId={{row[0]}}" class="title">
-                            
-                                {{row[1]}}
-                            
-                        </a>
 
-                        <p class="price">${{row[2]}}</p>
-                    
-    
-                    </div>
-                </li>
-                {% endfor %}
-                {% endfor %}																																	
-            </ul>
-        </section>
+
+
+        <div class="container">
+            <form action="action_page.php">
+          
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+          
+              <label for="country">Country</label>
+              <select id="country" name="country">
+                <option value="australia">Australia</option>
+                <option value="canada">Canada</option>
+                <option value="usa">USA</option>
+              </select>
+          
+              <label for="subject">Subject</label>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Submit">
+          
+            </form>
+          </div> 
+
+
+
 
 
 
@@ -246,8 +276,8 @@
                     <div class="service">
                         <div class="responsive">	
                             <img src="themes/images/feature_img_2.png" alt="" />
-                            <h4>MODERN <strong>DESIGN</strong></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+                            <h4><strong>Email</strong></h4>
+                            <p>Conifers@info.com</p>									
                         </div>
                     </div>
                 </div>
@@ -255,8 +285,8 @@
                     <div class="service">
                         <div class="customize">			
                             <img src="themes/images/feature_img_1.png" alt="" />
-                            <h4>FREE <strong>SHIPPING</strong></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+                            <h4><strong>Phone Number</strong></h4>
+                            <p>+919727467661</p>
                         </div>
                     </div>
                 </div>
@@ -264,8 +294,9 @@
                     <div class="service">
                         <div class="support">	
                             <img src="themes/images/feature_img_3.png" alt="" />
-                            <h4>24/7 LIVE <strong>SUPPORT</strong></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+                            <h4><strong>Address</strong></h4>
+                            <p>Shayona Business Hub <br>
+                                SG Highway Ahmedabad Gujarat 382481 INDIA</p>
                         </div>
                     </div>
                 </div>	
@@ -309,29 +340,21 @@
     </section>
 
 
-<section class = "container" id="copyright">
-    <span>Copyright 2023 Conifers All right reserved.</span>
-</section>
 
-</div>
+    <script src={{ url_for('static', filename='themes/js/common.js') }}></script>
+	<script src={{ url_for('static', filename='themes/js/jquery.flexslider-min.js') }}></script>
+	<script type="text/javascript">
+		$(function() {
+			$(document).ready(function() {
+				$('.flexslider').flexslider({
+					animation: "fade",
+					slideshowSpeed: 4000,
+					animationSpeed: 600,
+					controlNav: false,
+					directionNav: true,
+					controlsContainer: ".flex-container" // the container that holds the flexslider
+				});
+			});
+		});
 
-
-
-
-
-<script src={{ url_for('static', filename='themes/js/common.js') }}></script>
-<script src={{ url_for('static', filename='themes/js/jquery.flexslider-min.js') }}></script>
-<script type="text/javascript">
-$(function() {
-    $(document).ready(function() {
-        $('.flexslider').flexslider({
-            animation: "fade",
-            slideshowSpeed: 4000,
-            animationSpeed: 600,
-            controlNav: false,
-            directionNav: true,
-            controlsContainer: ".flex-container" // the container that holds the flexslider
-        });
-    });
-});
-</script>
+    </script>
