@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html>
+
+
+<head>
+	<meta charset="utf-8">
+	<title> CONIFERS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+	<!-- bootstrap -->
+	<link href={{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }} rel="stylesheet">      
+	<link href={{ url_for('static', filename='bootstrap/css/bootstrap-responsive.min.css') }} rel="stylesheet">
+	
+	<link href={{ url_for('static', filename='themes/css/bootstrappage.css') }} rel="stylesheet"/>
+	
+	<!-- global styles -->
+	<link href={{ url_for('static', filename='themes/css/flexslider.css') }} rel="stylesheet"/>
+	<link href={{ url_for('static', filename='themes/css/main.css') }} rel="stylesheet"/>
+
+	<!-- scripts -->
+	<script src={{ url_for('static', filename='themes/js/jquery-1.7.2.min.js') }}></script>
+	<script src={{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}></script>				
+	<script src={{ url_for('static', filename='themes/js/superfish.js') }}></script>	
+	<script src={{ url_for('static', filename='themes/js/jquery.scrolltotop.js') }}></script>
+	<!--[if lt IE 9]>			
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<style>
+		
+
+		/* Slideshow container */
+		.slideshow-container {
+		  max-width: 1000px;
+		  position: relative;
+		  margin: auto;
+		}
+		
+		/* Hide the images by default */
+		.mySlides {
+		  display: none;
+		}
+		.mySlides1 {
+			display: none;
+		  }
+		/* Next & previous buttons */
+		.prev1, .next1 {
+		  cursor: pointer;
+		  position: absolute;
+		  top: 50%;
+		  width: auto;
+		  margin-top: -22px;
+		  padding: 16px;
+		  color: white;
+		  font-weight: bold;
+		  font-size: 18px;
+		  transition: 0.6s ease;
+		  border-radius: 0 3px 3px 0;
+		  user-select: none;
+		}
+		
+		/* Position the "next button" to the right */
+		.next1 {
+		  right: 0;
+		  border-radius: 3px 0 0 3px;
+		}
+		
+		/* On hover, add a black background color with a little bit see-through */
+		.prev1:hover, .next1:hover {
+		  background-color: rgba(0,0,0,0.8);
+		}
+		
+		/* Caption text */
+		.text1 {
+		  color: #f2f2f2;
+		  font-size: 15px;
+		  padding: 8px 12px;
+		  position: absolute;
+		  bottom: 8px;
+		  width: 100%;
+		  text-align: center;
+		}
+		
+		/* Number text (1/3 etc) */
+		.numbertext {
+		  color: #f2f2f2;
+		  font-size: 12px;
+		  padding: 8px 12px;
+		  position: absolute;
+		  top: 0;
+		}
+		
+		/* The dots/bullets/indicators */
+		.dot {
+		  cursor: pointer;
+		  height: 15px;
+		  width: 15px;
+		  margin: 0 2px;
+		  background-color: #bbb;
+		  border-radius: 50%;
+		  display: inline-block;
+		  transition: background-color 0.6s ease;
+		}
+		
+		.active1, .dot:hover {
+		  background-color: #717171;
+		}
+		.dot1 {
+			cursor: pointer;
+			height: 15px;
+			width: 15px;
+			margin: 0 2px;
+			background-color: #bbb;
+			border-radius: 50%;
+			display: inline-block;
+			transition: background-color 0.6s ease;
+		  }
+		  
+		  .active11, .dot1:hover {
+			background-color: #717171;
+		  }
+		/* Fading animation */
+		.fade {
+		  animation-name: fade;
+		  animation-duration: 1.5s;
+		}
+		
+		@keyframes fade {
+		  from {opacity: .4}
+		  to {opacity: 1}
+		}
+	</style>
+</head>
+
+<body>		
+<section>
+	<div id="top-bar" class="container">
+		<div class="row">
+			<div class="span4">
+				<a href="/" class="logo pull-left"><img style = "height: 40px;width: 164px;" src= {{ url_for('static', filename='images/logo.png') }} class="site_logo" alt=""></a>
+			</div>
+			<div class="span8">
+				<div class="account pull-right">
+					<ul class="user-menu">	
+					{% if not loggedIn %}
+					<li><a href="/loginForm">Sign In</a></li>
+					<li><a href="/products">Products</a></li>
+					{% else %}
+					<div class="dropdown">
+						<li >Hello  {{firstName}}</li>
+						 
+						<li><a href="/account/profile">My profile</a></li>
+						<li><a href="/products">Products</a></li>
+
+						<li><a href="/logout">Sign Out</a></li>
+						<li><a href="/cart">CART ({{noOfItems}})</a></li>
+					</div>
+					{% endif %}
+							
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+	<div id="wrapper">
+		
+		
+		<section class="navbar main-menu container">
+			<div class="navbar-inner main-menu">		
+				<strong style = "text-transform: uppercase;font-size: 15px;"> Categories </strong>
+				<nav id="menu" class="pull-right">
+					<ul>
+					
+						<li><a href="/displayCategory?categoryId=1">sunglasses</a></li>
+						<li><a href="/displayCategory?categoryId=2">spectacles</a></li>						
+					</ul>
+				</nav>
+			</div>
+		</section>
+
+
+
+
+		<section  class="homepage-slider container" id="home-slider">
+			<div class="flexslider">
+				<ul class="slides">
+					<li>
+						<img src={{ url_for('static', filename='themes/images/carousel/banner-1.jpg') }} alt="" />
+					</li>
+					<li>
+						<img src={{ url_for('static', filename='themes/images/carousel/banner-2.jpg') }} alt="" />
+						<div class="intro">
+							<h1>Mid season sale</h1>
+							<p><span>Up to 50% Off</span></p>
+							<p><span>On selected items online and in stores</span></p>
+						</div>
+					</li>
+				</ul>
+			</div>			
+		</section>
+
+		<section class="header_text container">
+			We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
+			<br/>Don't miss to use our cheap abd best bootstrap templates.
+		</section>
+		<section class="main-content container">
+
+
+
+
+<div class="display">
+	<h2>Edit profile</h2>
+	<form action="/updateProfile" method="POST">
+		<p>Email:<input type="email" name="email" value={{profileData[1]}} readonly="readonly"></p>
+		<p>First Name:<input type="text" name="firstName" value={{profileData[2]}}></p>
+		<p>Last Name: <input type="text" name="lastName" value={{profileData[3]}}></p>
+		<p>Address 1: <input type="text" name="address1" value={{profileData[4]}}></p>
+		<p>Address 2: <input type="text" name="address2" value={{profileData[5]}}></p>
+		<p>Zip Code: <input type="text" name="zipcode" value={{profileData[6]}}></p>
+		<p>City: <input type="text" name="city" value={{profileData[7]}}></p>
+		<p>State: <input type="text" name="state" value={{profileData[8]}}></p>
+		<p>Country: <input type="text" name="country" value={{profileData[9]}}></p>
+		<p>Phone Number: <input type="text" name="phone" value={{profileData[10]}}></p>
+		<input type="submit" value="Save">
+	</form>
+</div>
+</section>
+		
+<section id="footer-bar" class="main-content container" >
+	<div class="row">
+		<div class="span3">
+			<h4>Navigation</h4>
+			<ul class="nav">
+				<li><a href="./index.html">Homepage</a></li>  
+				<li><a href="./about.html">About Us</a></li>
+				<li><a href="./contact.html">Contac Us</a></li>
+				<li><a href="./cart.html">Your Cart</a></li>
+				<li><a href="./register.html">Login</a></li>							
+			</ul>					
+		</div>
+		<div class="span4">
+			<h4>My Account</h4>
+			<ul class="nav">
+				<li><a href="#">My Account</a></li>
+				<li><a href="#">Order History</a></li>
+				<li><a href="#">Wish List</a></li>
+				<li><a href="#">Newsletter</a></li>
+			</ul>
+		</div>
+		<div class="span5">
+			<a href="/" class="logo pull-left"><img style = "height: 40px;width: 200px;" src= {{ url_for('static', filename='images/logo.png') }} class="site_logo" alt=""></a>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+			<br/>
+			<span class="social_icons">
+				<a class="facebook" href="#">Facebook</a>
+				<a class="twitter" href="#">Twitter</a>
+				<a class="skype" href="#">Skype</a>
+				<a class="vimeo" href="#">Vimeo</a>
+			</span>
+		</div>					
+	</div>	
+</section>
+
+
+<section class = "container" id="copyright">
+<span>Copyright 2023 Conifers All right reserved.</span>
+</section>
+
+</div>
+
+<script src={{ url_for('static', filename='themes/js/common.js') }}></script>
+<script src={{ url_for('static', filename='themes/js/jquery.flexslider-min.js') }}></script>
+<script type="text/javascript">
+$(function() {
+	$(document).ready(function() {
+		$('.flexslider').flexslider({
+			animation: "fade",
+			slideshowSpeed: 4000,
+			animationSpeed: 600,
+			controlNav: false,
+			directionNav: true,
+			controlsContainer: ".flex-container" // the container that holds the flexslider
+		});
+	});
+});
+</script>
+</body>
+</html>
+
